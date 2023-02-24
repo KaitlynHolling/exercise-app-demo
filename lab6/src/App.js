@@ -2,7 +2,7 @@ import './App.css'
 import {useCallback, useState} from 'react'
 import DurationExercise from './components/DurationExercise'
 import RepetitionExercise from './components/RepetitionExercise'
-import Stopwatch from './components/StopWatch'
+import StopWatch from './components/StopWatch'
 
 const MENU_SCREEN = "menu"
 const EXERCISE_SCREEN = "exercise"
@@ -10,12 +10,27 @@ const DURATION_EXERCISE = "duration"
 const REPETITION_EXERCISE = "repetition"
 const RUNNING_EXERCISE = "running"
 
-function RunningExercise({exercise, setMenuScreen, StopWatch}) {
+
+function RunningExercise({exercise, setMenuScreen}) {
     let {name} = exercise
+    let [count, setCount] = useState(0)
     return <div>
         <p>{name}</p>
+        <p style={{fontSize:"3em"}}>Laps:</p>
+        <p style={{fontSize:"5em"}}>{count}</p>
+        <button style={{fontSize:"2em"}} onClick={() => setCount(count=>count+1)}>Increment</button> 
+        <br></br>
+        <br></br>
+        <button style={{fontSize:"1em"}} onClick={() => setCount(0)}>Reset</button>
+        <br></br>
+        <p style={{fontSize:"3em"}}>Time:</p>
         <StopWatch/>
-        <button onClick={setMenuScreen}>Back to Menu</button>
+        <br></br>
+        <p style={{fontSize:"1em"}}>Previous Laps & Times:</p>
+        <br></br>
+        <p>placeholder for array</p>
+        <br></br>
+    <button style={{fontSize:"1em"}} onClick={setMenuScreen}>Back to Menu</button>
     </div>
 }
 
